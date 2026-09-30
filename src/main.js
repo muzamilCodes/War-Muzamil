@@ -1,6 +1,6 @@
 // ===================================================================
 // WAR MUZAMIL // MAIN APPLICATION ENTRY POINT
-// Full Stack Developer & MERN Specialist · Kashmir, India
+// Cyberpunk 3D Single-Page Portfolio & Interactive WebGL Experience
 // ===================================================================
 
 import './style.css';
@@ -33,8 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initTelemetry();
   initContactForm();
 
-  // 2. Setup Animations
+  // 2. Setup Animations & Custom Cursor
+  setupCyberCursor();
   setupGsapAnimations();
+  setupTypingAnimation();
 
   // 3. Setup Navigation & Header
   setupNavigation();
@@ -42,12 +44,156 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Setup Hero HUD Controls
   setupHeroControls();
 
-  // 5. Setup Dual-Photo Gallery Switcher
-  setupPhotoSwitcher();
+  // 5. Setup 3D Hero Portrait Physics & Switcher
+  setupHeroPortrait3D();
 
   // 6. Setup Theme & Audio
   setupThemeAndAudio();
 });
+
+// ===================================================================
+// CUSTOM CYBER CURSOR FOLLOWER
+// ===================================================================
+function setupCyberCursor() {
+  const cursor = document.getElementById('cyber-cursor');
+  const ring = document.getElementById('cyber-cursor-ring');
+  if (!cursor || !ring) return;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let ringX = mouseX;
+  let ringY = mouseY;
+
+  window.addEventListener('pointermove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+  }, { passive: true });
+
+  function renderCursorRing() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+    requestAnimationFrame(renderCursorRing);
+  }
+  requestAnimationFrame(renderCursorRing);
+
+  // Hover states
+  document.querySelectorAll('a, button, input, textarea, select, .project-tilt-card, .skill-stat-row').forEach((el) => {
+    el.addEventListener('mouseenter', () => ring.classList.add('active'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('active'));
+  });
+}
+
+// ===================================================================
+// DYNAMIC TYPING ROLE ANIMATION
+// ===================================================================
+function setupTypingAnimation() {
+  const typedEl = document.getElementById('typed-role-text');
+  if (!typedEl) return;
+
+  const roles = [
+    'Full Stack Developer & MERN Specialist',
+    'Next.js 14 & React Architecture',
+    'Node.js & Express REST APIs',
+    'MongoDB & PostgreSQL Databases',
+    'High-Performance Interactive 3D Web'
+  ];
+
+  let roleIdx = 0;
+  let charIdx = 0;
+  let isDeleting = false;
+  let typingSpeed = 70;
+
+  function typeTick() {
+    const currentRole = roles[roleIdx];
+
+    if (isDeleting) {
+      charIdx--;
+      typedEl.textContent = currentRole.substring(0, charIdx);
+      typingSpeed = 35;
+    } else {
+      charIdx++;
+      typedEl.textContent = currentRole.substring(0, charIdx);
+      typingSpeed = 70;
+    }
+
+    if (!isDeleting && charIdx === currentRole.length) {
+      isDeleting = true;
+      typingSpeed = 2200; // Pause at end of word
+    } else if (isDeleting && charIdx === 0) {
+      isDeleting = false;
+      roleIdx = (roleIdx + 1) % roles.length;
+      typingSpeed = 400;
+    }
+
+    setTimeout(typeTick, typingSpeed);
+  }
+
+  typeTick();
+}
+
+// ===================================================================
+// HERO 3D PORTRAIT PHYSICS & DUAL SWITCHER
+// ===================================================================
+function setupHeroPortrait3D() {
+  const cardWrapper = document.getElementById('hero-portrait-card');
+  const activePortrait = document.getElementById('hero-active-portrait');
+  const glareLayer = document.getElementById('portrait-glare');
+  const switchBtns = document.querySelectorAll('.hero-switch-btn');
+  const frameWrapper = cardWrapper ? cardWrapper.querySelector('.cyber-frame-wrapper') : null;
+
+  if (!cardWrapper || !frameWrapper) return;
+
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 3D Perspective Tilt with Mouse
+  cardWrapper.addEventListener('pointermove', (e) => {
+    if (isReducedMotion) return;
+
+    const rect = cardWrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotX = ((y - centerY) / centerY) * -14;
+    const rotY = ((x - centerX) / centerX) * 14;
+
+    frameWrapper.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(10px)`;
+
+    if (glareLayer) {
+      const pctX = (x / rect.width) * 100;
+      const pctY = (y / rect.height) * 100;
+      glareLayer.style.background = `radial-gradient(circle at ${pctX}% ${pctY}%, rgba(0, 240, 255, 0.3) 0%, transparent 65%)`;
+    }
+  });
+
+  cardWrapper.addEventListener('pointerleave', () => {
+    frameWrapper.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+    if (glareLayer) glareLayer.style.background = '';
+  });
+
+  // Hero Photo Switcher
+  switchBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetSrc = btn.getAttribute('data-src');
+      if (!targetSrc || activePortrait.getAttribute('src') === targetSrc) return;
+
+      playConfirm();
+
+      switchBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      activePortrait.style.opacity = '0';
+      setTimeout(() => {
+        activePortrait.src = targetSrc;
+        activePortrait.style.opacity = '1';
+      }, 200);
+    });
+  });
+}
 
 // ===================================================================
 // GSAP ENTRANCE & SCROLL ANIMATIONS
@@ -193,35 +339,6 @@ function setupHeroControls() {
       setParallaxGain(val);
     });
   }
-}
-
-// ===================================================================
-// DUAL-PHOTO GALLERY SWITCHER
-// ===================================================================
-function setupPhotoSwitcher() {
-  const switchBtns = document.querySelectorAll('.photo-switch-btn');
-  const portraitImg = document.getElementById('active-portrait-img');
-
-  if (!portraitImg || switchBtns.length === 0) return;
-
-  switchBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetSrc = btn.getAttribute('data-src');
-      if (!targetSrc || portraitImg.getAttribute('src') === targetSrc) return;
-
-      playConfirm();
-
-      switchBtns.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Smooth crossfade
-      portraitImg.style.opacity = '0';
-      setTimeout(() => {
-        portraitImg.src = targetSrc;
-        portraitImg.style.opacity = '1';
-      }, 200);
-    });
-  });
 }
 
 // ===================================================================

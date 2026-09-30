@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>War Muzamil | Full Stack Developer & MERN Specialist</title>
-    <meta name="description" content="Portfolio of War Muzamil - Full Stack Developer and MERN Specialist crafting high-performance, modern web applications with React, Next.js, Node.js and MongoDB." />
+    <meta name="description" content="Official 3D Cyberpunk Portfolio of War Muzamil - Full Stack Developer and MERN Specialist crafting high-performance, modern web applications with React, Next.js, Node.js and MongoDB." />
     <meta name="keywords" content="War Muzamil, MERN Stack Developer, Full Stack Developer, React Developer, Next.js Developer, Node.js Developer, Kashmir Developer" />
     
     <!-- Favicon -->
@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   </head>
   <body class="theme-cyan">
+    <!-- Custom Cyber Cursor Follower -->
+    <div id="cyber-cursor" class="cyber-cursor" aria-hidden="true"></div>
+    <div id="cyber-cursor-ring" class="cyber-cursor-ring" aria-hidden="true"></div>
+
     <!-- Matrix Rain Canvas Overlay -->
     <canvas id="matrix-canvas" aria-hidden="true"></canvas>
 
@@ -32,7 +36,7 @@
       </a>
       <a href="https://x.com/MuzamilCoder" target="_blank" rel="noopener noreferrer" class="social-dock-btn" title="Twitter / X @MuzamilCoder">
         <i class="fa-brands fa-x-twitter"></i>
-        <span class="dock-tooltip">X / Twitter</span>
+        <span class="dock-tooltip">Twitter / X</span>
       </a>
       <a href="https://wa.me/919682645127" target="_blank" rel="noopener noreferrer" class="social-dock-btn" title="WhatsApp Message">
         <i class="fa-brands fa-whatsapp"></i>
@@ -58,43 +62,28 @@
           </div>
         </a>
 
-        <!-- System HUD Telemetry Readout -->
-        <div class="header-hud" aria-live="polite">
-          <div class="hud-pill status-pill">
-            <span class="pulse-dot"></span>
-            <span class="hud-label">STATUS:</span>
-            <span class="hud-val text-success">AVAILABLE</span>
-          </div>
-          <div class="hud-pill clock-pill" title="Live Coordinated Universal Time">
-            <span class="hud-icon">⏱</span>
-            <span id="header-utc-clock" class="hud-val">00:00:00 UTC</span>
-          </div>
-          <div class="hud-pill latency-pill" title="Network Round-trip Latency">
-            <span class="hud-icon">⚡</span>
-            <span id="header-latency" class="hud-val">12ms</span>
-          </div>
-          <div class="hud-pill fps-pill" title="Renderer Sustained FPS">
-            <span class="hud-icon">◈</span>
-            <span id="header-fps" class="hud-val">72 FPS</span>
-          </div>
-        </div>
-
         <!-- Section Navigation -->
         <nav class="site-nav" role="navigation" aria-label="Main Navigation">
           <ul class="nav-links">
-            <li><a href="#about" class="nav-link" data-nav="about">About</a></li>
-            <li><a href="#services" class="nav-link" data-nav="services">Services</a></li>
-            <li><a href="#projects" class="nav-link" data-nav="projects">Projects</a></li>
-            <li><a href="#skills" class="nav-link" data-nav="skills">Skills</a></li>
-            <li><a href="#journey" class="nav-link" data-nav="journey">Journey</a></li>
-            <li><a href="#terminal" class="nav-link" data-nav="terminal">Terminal</a></li>
-            <li><a href="#contact" class="nav-link" data-nav="contact">Contact</a></li>
+            <li><a href="#hero" class="nav-link active" data-nav="hero"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="#about" class="nav-link" data-nav="about"><i class="fa-solid fa-user"></i> About</a></li>
+            <li><a href="#services" class="nav-link" data-nav="services"><i class="fa-solid fa-layer-group"></i> Services</a></li>
+            <li><a href="#projects" class="nav-link" data-nav="projects"><i class="fa-solid fa-code"></i> Projects</a></li>
+            <li><a href="#skills" class="nav-link" data-nav="skills"><i class="fa-solid fa-microchip"></i> Skills</a></li>
+            <li><a href="#journey" class="nav-link" data-nav="journey"><i class="fa-solid fa-timeline"></i> Journey</a></li>
+            <li><a href="#terminal" class="nav-link" data-nav="terminal"><i class="fa-solid fa-terminal"></i> CLI</a></li>
+            <li><a href="#contact" class="nav-link" data-nav="contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
           </ul>
         </nav>
 
         <!-- Header Actions: Sound, Palette, Mobile Menu -->
         <div class="header-actions">
-          <button id="audio-toggle-btn" class="hud-btn" type="button" aria-label="Toggle cyber audio effects" title="Audio Synthesizer (Muted by default)">
+          <div class="header-hud-mini" aria-live="polite">
+            <span class="pulse-dot"></span>
+            <span id="header-utc-clock" class="hud-mono-clock">00:00:00 UTC</span>
+          </div>
+
+          <button id="audio-toggle-btn" class="hud-btn" type="button" aria-label="Toggle cyber audio effects" title="Audio Synthesizer (Click to unmute)">
             <svg class="hud-icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
               <path class="speaker-base" d="M11 5L6 9H2v6h4l5 4V5z"/>
               <path class="speaker-wave" d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
@@ -107,7 +96,7 @@
           <div class="palette-picker-wrapper">
             <button id="palette-btn" class="hud-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Switch Neon Palette" title="Switch Neon Theme">
               <span class="palette-color-preview"></span>
-              <span class="hud-btn-text">PALETTE</span>
+              <span class="hud-btn-text">THEME</span>
             </button>
             <div id="palette-menu" class="palette-dropdown" role="menu" hidden>
               <button class="palette-item active" role="menuitem" data-palette="cyan">
@@ -138,12 +127,12 @@
     <div id="mobile-menu" class="mobile-menu-drawer" aria-hidden="true">
       <div class="mobile-menu-inner">
         <ul class="mobile-nav-links">
-          <li><a href="#hero" class="mobile-nav-link">00 // Core Identity</a></li>
+          <li><a href="#hero" class="mobile-nav-link">00 // Home & 3D Core</a></li>
           <li><a href="#about" class="mobile-nav-link">01 // Profile & Portrait</a></li>
           <li><a href="#services" class="mobile-nav-link">02 // Engineering Services</a></li>
           <li><a href="#projects" class="mobile-nav-link">03 // Featured Projects</a></li>
-          <li><a href="#skills" class="mobile-nav-link">04 // Technology Stack</a></li>
-          <li><a href="#journey" class="mobile-nav-link">05 // Milestones & Journey</a></li>
+          <li><a href="#skills" class="mobile-nav-link">04 // Technology Radar</a></li>
+          <li><a href="#journey" class="mobile-nav-link">05 // Career Milestones</a></li>
           <li><a href="#terminal" class="mobile-nav-link">06 // Interactive CLI</a></li>
           <li><a href="#contact" class="mobile-nav-link">07 // Uplink / Contact</a></li>
         </ul>
@@ -157,7 +146,7 @@
     <main id="main-content">
       
       <!-- ===================================================================
-           00. HERO SECTION WITH 3D WEBGL CORE
+           00. HERO SECTION WITH 3D WEBGL CORE & PROMINENT PORTRAIT SHOWCASE
            =================================================================== -->
       <section id="hero" class="hero-section" aria-label="Hero Experience">
         <!-- Three.js Canvas Container -->
@@ -168,130 +157,236 @@
         <div class="cyber-scanlines" aria-hidden="true"></div>
         <div class="cyber-grid-overlay" aria-hidden="true"></div>
 
-        <div class="hero-content-container">
-          <!-- Top Sub-Bar & Spec Badges -->
-          <div class="hero-meta-bar" data-gsap="fade-down">
-            <div class="blueprint-tag">
-              <span class="tag-bracket">[</span>
-              <span class="tag-text">AVAILABLE FOR FREELANCE & FULL-TIME</span>
-              <span class="tag-bracket">]</span>
-            </div>
-            <div class="tech-badges">
-              <span class="tech-badge"><i class="fa-solid fa-location-dot"></i> Handwara, Kashmir</span>
-              <span class="tech-badge">MERN Stack Specialist</span>
-              <span class="tech-badge">Next.js & React Architect</span>
-            </div>
-          </div>
-
-          <!-- Main Hero Identity Lockup -->
-          <div class="hero-identity">
-            <div class="hero-role-eyebrow" data-gsap="stagger">
-              <span class="eyebrow-accent">//</span> WAR MUZAMIL · SOFTWARE & WEB DEVELOPER
-            </div>
-            <h1 class="hero-title" data-gsap="stagger">
-              <span class="glitch-text" data-text="WAR MUZAMIL">WAR MUZAMIL</span>
-              <span class="hero-subhead">FULL STACK DEVELOPER & MERN SPECIALIST</span>
-            </h1>
-            <p class="hero-description" data-gsap="stagger">
-              Specialized in crafting scalable, robust web platforms with React, Next.js, Node.js, Express, and MongoDB.
-              Delivering fluid user experiences paired with modern backend architectures, micro-interactions, and high-performance WebGL.
-            </p>
-
-            <!-- Real Stats Matrix Bar -->
-            <div class="hero-metrics-pill-bar" data-gsap="stagger">
-              <div class="metric-pill">
-                <span class="pill-number">1+</span>
-                <span class="pill-title">Years Practical Exp</span>
+        <div class="container hero-container-layout">
+          
+          <!-- Left Column: Identity & Interactive CTAs -->
+          <div class="hero-text-column">
+            
+            <div class="hero-meta-bar" data-gsap="fade-down">
+              <div class="blueprint-tag">
+                <span class="pulse-dot"></span>
+                <span class="tag-text">AVAILABLE FOR FREELANCE & FULL-TIME</span>
               </div>
-              <div class="metric-pill">
-                <span class="pill-number">7+</span>
-                <span class="pill-title">Shipped Projects</span>
-              </div>
-              <div class="metric-pill">
-                <span class="pill-number">15+</span>
-                <span class="pill-title">Happy Clients</span>
-              </div>
-              <div class="metric-pill">
-                <span class="pill-number">100%</span>
-                <span class="pill-title">Clean Code Quality</span>
+              <div class="tech-badge">
+                <i class="fa-solid fa-location-dot text-primary"></i> Handwara, Kashmir
               </div>
             </div>
 
-            <!-- Hero CTAs -->
-            <div class="hero-cta-group" data-gsap="stagger">
-              <a href="#projects" class="cyber-btn primary-btn">
-                <span class="btn-scan"></span>
-                <span class="btn-text">EXPLORE PROJECTS</span>
-                <span class="btn-corner tl"></span>
-                <span class="btn-corner br"></span>
-              </a>
-              <a href="#about" class="cyber-btn secondary-btn">
-                <span class="btn-text">VIEW PROFILE & BIO</span>
-              </a>
-              <a href="#contact" class="cyber-btn outline-btn">
-                <span class="btn-icon">⚡</span>
-                <span class="btn-text">LET'S COLLABORATE</span>
-              </a>
-            </div>
-          </div>
+            <div class="hero-identity-box">
+              <div class="hero-role-eyebrow" data-gsap="stagger">
+                <span class="eyebrow-accent">//</span> WAR MUZAMIL · SOFTWARE & WEB DEVELOPER
+              </div>
+              
+              <h1 class="hero-title" data-gsap="stagger">
+                <span class="hero-title-first">WAR</span>
+                <span class="hero-title-last glitch-text" data-text="MUZAMIL">MUZAMIL</span>
+              </h1>
 
-          <!-- Hero WebGL HUD Controls: Core shape, Neon palette, Render Mode -->
-          <div class="hero-hud-controls-panel" data-gsap="fade-up">
-            <div class="hud-panel-header">
-              <span class="hud-panel-title">3D REALTIME WEBGL CORE MANIFOLD</span>
-              <span class="hud-panel-tag">LIVE INTERACTIVE HUD</span>
-            </div>
+              <div class="hero-dynamic-subtitle" data-gsap="stagger">
+                <span class="terminal-prefix">❯</span>
+                <span id="typed-role-text" class="typed-text">Full Stack Developer & MERN Specialist</span>
+                <span class="cursor-blink">_</span>
+              </div>
 
-            <div class="hud-controls-grid">
-              <div class="hud-control-group">
-                <label class="control-label">CORE GEOMETRY</label>
-                <div class="shape-buttons" role="group" aria-label="Core Geometry Switcher">
-                  <button type="button" class="ctrl-chip active" data-shape="icosahedron">Icosahedron</button>
-                  <button type="button" class="ctrl-chip" data-shape="torus">Torus Knot</button>
-                  <button type="button" class="ctrl-chip" data-shape="octahedron">Octahedron</button>
-                  <button type="button" class="ctrl-chip" data-shape="sphere">Cyber Sphere</button>
+              <p class="hero-description" data-gsap="stagger">
+                Specialized in crafting scalable, robust web platforms with <strong>React</strong>, <strong>Next.js</strong>, <strong>Node.js</strong>, <strong>Express</strong>, and <strong>MongoDB</strong>. Delivering fluid user experiences paired with modern backend architectures, micro-interactions, and high-performance WebGL.
+              </p>
+
+              <!-- Real Stats Matrix Bar -->
+              <div class="hero-metrics-grid" data-gsap="stagger">
+                <div class="metric-pill">
+                  <span class="pill-number">1+</span>
+                  <span class="pill-title">Years Practical Exp</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="pill-number">7+</span>
+                  <span class="pill-title">Shipped Projects</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="pill-number">15+</span>
+                  <span class="pill-title">Happy Clients</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="pill-number">100%</span>
+                  <span class="pill-title">Code Quality</span>
                 </div>
               </div>
 
-              <div class="hud-control-group">
-                <label class="control-label">RENDER MODE</label>
-                <div class="mode-buttons" role="group" aria-label="Render Mode Switcher">
-                  <button type="button" class="ctrl-chip active" data-mode="wireframe">Wireframe</button>
-                  <button type="button" class="ctrl-chip" data-mode="surface">Surface + Glow</button>
-                  <button type="button" class="ctrl-chip" data-mode="points">Dust Points</button>
-                </div>
+              <!-- Hero CTAs -->
+              <div class="hero-cta-group" data-gsap="stagger">
+                <a href="#projects" class="cyber-btn primary-btn">
+                  <span class="btn-scan"></span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                  <span class="btn-text">VIEW PROJECTS</span>
+                  <span class="btn-corner tl"></span>
+                  <span class="btn-corner br"></span>
+                </a>
+                <a href="#contact" class="cyber-btn secondary-btn">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span class="btn-text">HIRE / CONTACT</span>
+                </a>
+                <a href="#terminal" class="cyber-btn outline-btn">
+                  <i class="fa-solid fa-terminal"></i>
+                  <span class="btn-text">OPEN CLI</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 3D WebGL HUD Controls: Core shape, Neon palette, Render Mode -->
+            <div class="hero-hud-controls-panel" data-gsap="fade-up">
+              <div class="hud-panel-header">
+                <span class="hud-panel-title">3D REALTIME WEBGL CORE MANIFOLD</span>
+                <span class="hud-panel-tag">LIVE INTERACTIVE HUD</span>
               </div>
 
-              <div class="hud-control-group hud-sliders">
-                <div class="slider-row">
-                  <span class="slider-name">PARTICLE SPEED</span>
-                  <input type="range" id="particle-speed-slider" min="0.2" max="3.0" step="0.1" value="1.0" aria-label="Particle velocity slider">
-                  <span id="speed-val" class="slider-num">1.0x</span>
+              <div class="hud-controls-grid">
+                <div class="hud-control-group">
+                  <label class="control-label">CORE GEOMETRY</label>
+                  <div class="shape-buttons" role="group" aria-label="Core Geometry Switcher">
+                    <button type="button" class="ctrl-chip active" data-shape="icosahedron">Icosahedron</button>
+                    <button type="button" class="ctrl-chip" data-shape="torus">Torus Knot</button>
+                    <button type="button" class="ctrl-chip" data-shape="octahedron">Octahedron</button>
+                    <button type="button" class="ctrl-chip" data-shape="sphere">Sphere</button>
+                  </div>
                 </div>
-                <div class="slider-row">
-                  <span class="slider-name">PARALLAX GAIN</span>
-                  <input type="range" id="parallax-gain-slider" min="0" max="2.0" step="0.1" value="1.0" aria-label="Parallax gain slider">
-                  <span id="parallax-val" class="slider-num">1.0x</span>
+
+                <div class="hud-control-group">
+                  <label class="control-label">RENDER MODE</label>
+                  <div class="mode-buttons" role="group" aria-label="Render Mode Switcher">
+                    <button type="button" class="ctrl-chip active" data-mode="wireframe">Wireframe</button>
+                    <button type="button" class="ctrl-chip" data-mode="surface">Surface + Glow</button>
+                    <button type="button" class="ctrl-chip" data-mode="points">Dust Points</button>
+                  </div>
+                </div>
+
+                <div class="hud-control-group hud-sliders">
+                  <div class="slider-row">
+                    <span class="slider-name">VELOCITY</span>
+                    <input type="range" id="particle-speed-slider" min="0.2" max="3.0" step="0.1" value="1.0" aria-label="Particle velocity slider">
+                    <span id="speed-val" class="slider-num">1.0x</span>
+                  </div>
+                  <div class="slider-row">
+                    <span class="slider-name">PARALLAX</span>
+                    <input type="range" id="parallax-gain-slider" min="0" max="2.0" step="0.1" value="1.0" aria-label="Parallax gain slider">
+                    <span id="parallax-val" class="slider-num">1.0x</span>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
 
-          <!-- Scroll Cue -->
-          <div class="hero-scroll-cue" data-gsap="fade-up">
-            <a href="#about" class="scroll-cue-link" aria-label="Scroll to Profile Overview">
-              <span class="scroll-cue-text">EXPLORE PROFILE</span>
-              <div class="scroll-mouse-icon">
-                <span class="mouse-wheel"></span>
+          <!-- Right Column: FULL HIGH-IMPACT 3D PORTRAIT SHOWCASE (PROMINENTLY FEATURED) -->
+          <div class="hero-portrait-column" data-gsap="fade-up">
+            <div class="hero-3d-card-wrapper" id="hero-portrait-card">
+              
+              <!-- Ambient Holographic Aura Behind Portrait -->
+              <div class="portrait-ambient-glow" aria-hidden="true"></div>
+              
+              <!-- Holographic Border Frame -->
+              <div class="cyber-frame-wrapper">
+                
+                <!-- Reticle Corner Accents -->
+                <div class="cyber-reticle-corners" aria-hidden="true">
+                  <span class="reticle-corner tl"></span>
+                  <span class="reticle-corner tr"></span>
+                  <span class="reticle-corner bl"></span>
+                  <span class="reticle-corner br"></span>
+                </div>
+
+                <!-- Live HUD Upper Bar -->
+                <div class="portrait-top-hud">
+                  <div class="hud-target-lock">
+                    <span class="lock-glyph">⌖</span>
+                    <span class="lock-text">IDENTITY: WAR MUZAMIL</span>
+                  </div>
+                  <div class="hud-live-tag">
+                    <span class="pulse-dot"></span>
+                    <span>ONLINE // ACTIVE</span>
+                  </div>
+                </div>
+
+                <!-- High-Res Portrait Image Frame -->
+                <div class="portrait-image-container">
+                  <img 
+                    id="hero-active-portrait" 
+                    src="/muzamil-portrait-1.jpg" 
+                    alt="War Muzamil - Full Stack Developer portrait" 
+                    class="hero-portrait-img"
+                  />
+                  <!-- Holographic Scanline Overlay -->
+                  <div class="portrait-scanline-layer" aria-hidden="true"></div>
+                  <div class="portrait-glare-layer" id="portrait-glare" aria-hidden="true"></div>
+                </div>
+
+                <!-- Bottom Floating Badges Bar -->
+                <div class="portrait-bottom-hud">
+                  <div class="hud-identity-info">
+                    <span class="hud-spec-name">WAR MUZAMIL</span>
+                    <span class="hud-spec-role">FULL STACK // MERN SPECIALIST</span>
+                  </div>
+                  <div class="hud-badge-location">
+                    <i class="fa-solid fa-map-pin text-primary"></i>
+                    <span>Kashmir, India</span>
+                  </div>
+                </div>
+
               </div>
-              <span class="scroll-arrow">▼</span>
-            </a>
+
+              <!-- Dual-Photo Switcher Buttons Directly Under Hero Portrait -->
+              <div class="hero-photo-switcher">
+                <button type="button" class="hero-switch-btn active" data-src="/muzamil-portrait-1.jpg">
+                  <img src="/muzamil-portrait-1.jpg" alt="Portrait 1 thumbnail" class="switch-thumb" />
+                  <div class="switch-info">
+                    <span class="switch-title">PORTRAIT 01</span>
+                    <span class="switch-sub">Studio / Profile</span>
+                  </div>
+                </button>
+                <button type="button" class="hero-switch-btn" data-src="/muzamil-portrait-2.jpg">
+                  <img src="/muzamil-portrait-2.jpg" alt="Portrait 2 thumbnail" class="switch-thumb" />
+                  <div class="switch-info">
+                    <span class="switch-title">PORTRAIT 02</span>
+                    <span class="switch-sub">Outdoor / Scenic</span>
+                  </div>
+                </button>
+              </div>
+
+              <!-- Floating Orbital Badges with 3D Depth -->
+              <div class="orbital-badge badge-top-right">
+                <div class="orbital-icon"><i class="fa-brands fa-react text-primary"></i></div>
+                <div class="orbital-text">
+                  <span class="k">EXPERTISE</span>
+                  <span class="v">MERN STACK</span>
+                </div>
+              </div>
+
+              <div class="orbital-badge badge-bottom-left">
+                <div class="orbital-icon"><i class="fa-solid fa-code-commit text-success"></i></div>
+                <div class="orbital-text">
+                  <span class="k">SHIPPED</span>
+                  <span class="v">7+ PLATFORMS</span>
+                </div>
+              </div>
+
+            </div>
           </div>
+
+        </div>
+
+        <!-- Scroll Cue -->
+        <div class="hero-bottom-scroll-cue">
+          <a href="#about" class="scroll-cue-link" aria-label="Scroll to Profile Overview">
+            <span class="scroll-cue-text">SCROLL TO EXPLORE</span>
+            <div class="scroll-mouse-icon">
+              <span class="mouse-wheel"></span>
+            </div>
+            <span class="scroll-arrow">▼</span>
+          </a>
         </div>
       </section>
 
       <!-- ===================================================================
-           01. ABOUT ME & PHOTOGRAPHY SHOWCASE
+           01. ABOUT ME & NARRATIVE
            =================================================================== -->
       <section id="about" class="about-section" aria-label="About War Muzamil">
         <div class="container">
@@ -343,6 +438,7 @@
 
               <div class="about-action-row">
                 <a href="#contact" class="cyber-btn primary-btn">
+                  <i class="fa-solid fa-paper-plane"></i>
                   <span class="btn-text">GET IN TOUCH</span>
                 </a>
                 <a href="https://github.com/muzamilCodes" target="_blank" rel="noopener noreferrer" class="cyber-btn outline-btn">
@@ -356,60 +452,17 @@
               </div>
             </div>
 
-            <!-- Right: Cyber Dual-Photo Showcase featuring user's photos -->
+            <!-- Right: Secondary Portrait Feature with 3D Holographic Framing -->
             <div class="about-photo-showcase">
-              
-              <!-- Photo Container Card -->
-              <div class="cyber-photo-card" id="portrait-card">
-                <!-- Glare & Hologram scanline overlay -->
-                <div class="photo-scanline-overlay" aria-hidden="true"></div>
-                <div class="photo-reticle-corners" aria-hidden="true">
-                  <span class="corner tl"></span>
-                  <span class="corner tr"></span>
-                  <span class="corner bl"></span>
-                  <span class="corner br"></span>
-                </div>
-
-                <!-- Active Portrait Image -->
-                <div class="photo-image-wrapper">
-                  <img 
-                    id="active-portrait-img" 
-                    src="/muzamil-portrait-1.jpg" 
-                    alt="War Muzamil - Full Stack Developer portrait" 
-                    class="portrait-img"
-                    loading="lazy"
-                  />
-                </div>
-
-                <!-- Overlay Badge -->
-                <div class="photo-hud-badge">
-                  <div class="badge-content">
-                    <span class="badge-name">WAR MUZAMIL</span>
-                    <span class="badge-role">FULL STACK DEVELOPER</span>
-                  </div>
-                  <div class="badge-pill">
-                    <span class="pulse-dot"></span>
-                    <span>ONLINE</span>
+              <div class="cyber-secondary-portrait-box">
+                <div class="secondary-portrait-wrapper">
+                  <img src="/muzamil-portrait-2.jpg" alt="War Muzamil scenic portrait" class="secondary-portrait-img" loading="lazy" />
+                  <div class="secondary-overlay-badge">
+                    <span class="badge-role-tag">WAR MUZAMIL</span>
+                    <span class="badge-desc-tag">Kashmir, India · Software Engineer</span>
                   </div>
                 </div>
               </div>
-
-              <!-- Dual Photo Switcher Tabs -->
-              <div class="photo-switcher-tabs" role="group" aria-label="Portrait Gallery Switcher">
-                <button type="button" class="photo-switch-btn active" data-src="/muzamil-portrait-1.jpg">
-                  <span class="photo-thumb-wrap">
-                    <img src="/muzamil-portrait-1.jpg" alt="Portrait 1 preview" class="thumb-img" />
-                  </span>
-                  <span class="switch-btn-text">PORTRAIT 01 // PROFILE</span>
-                </button>
-                <button type="button" class="photo-switch-btn" data-src="/muzamil-portrait-2.jpg">
-                  <span class="photo-thumb-wrap">
-                    <img src="/muzamil-portrait-2.jpg" alt="Portrait 2 preview" class="thumb-img" />
-                  </span>
-                  <span class="switch-btn-text">PORTRAIT 02 // RIVER OUTDOOR</span>
-                </button>
-              </div>
-
             </div>
 
           </div>
@@ -657,7 +710,7 @@
                 </div>
                 <div class="card-content">
                   <h3 class="card-title">Sportify Kashmir Store (V2)</h3>
-                  <p class="card-tagline">Athletic Gear & Custom Apparel</p>
+                  <p class="card-tagline">Athletic Gear & Custom Team Apparel Platform</p>
                   <p class="card-desc">
                     Upgraded e-commerce platform engineered for sports gear and custom athletic apparel. Incorporates cart state management and high-speed checkout flows.
                   </p>
@@ -954,7 +1007,7 @@
 ██║    ██║██╔══██╗██╔══██╗    ████╗ ████║██║   ██║╚══███╔╝██╔══██╗████╗ ████║██║██║     
 ██║ █╗ ██║███████║██████╔╝    ██╔████╔██║██║   ██║  ███╔╝ ███████║██╔████╔██║██║██║     
 ██║███╗██║██╔══██║██╔══██╗    ██║╚██╔╝██║██║   ██║ ███╔╝  ██╔══██║██║╚██╔╝██║██║██║     
-╚███╔███╔╝██║  ██║██║  ██║    ██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║███████╗
+╚███╔███╔╝██║  ██║██║  ██║    ██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║███████║
  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚══════╝
                 </div>
                 <p class="term-cyan">WAR MUZAMIL // FULL STACK DEVELOPER & MERN SPECIALIST</p>
@@ -1163,7 +1216,7 @@
                 </div>
                 <div class="receipt-row">
                   <span class="receipt-k">TIMESTAMP:</span>
-                  <span id="receipt-time" class="receipt-v">2026-09-30 20:40:00 UTC</span>
+                  <span id="receipt-time" class="receipt-v">2026-09-30 20:50:00 UTC</span>
                 </div>
                 <div class="receipt-row">
                   <span class="receipt-k">DIRECT INBOX:</span>
@@ -1197,9 +1250,7 @@
 
     </main>
 
-    <!-- ===================================================================
-         INTERNAL ACCESSIBLE PROJECT DETAIL DIALOG (MODAL)
-         =================================================================== -->
+    <!-- Project Detail Modal -->
     <div id="project-modal" class="cyber-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-project-title" hidden>
       <div class="cyber-modal-box">
         <div class="modal-header">
@@ -1216,7 +1267,6 @@
             <p id="modal-project-subtitle" class="modal-subtitle">Educational Resource Hub · High Throughput</p>
           </div>
 
-          <!-- Project Actions Bar -->
           <div class="modal-links-bar" id="modal-links-bar">
             <a id="modal-live-btn" href="#" target="_blank" rel="noopener noreferrer" class="cyber-btn primary-btn">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -1238,9 +1288,7 @@
 
             <div class="modal-section-block">
               <h3 class="modal-subheading">TECH SPECIFICATIONS</h3>
-              <div id="modal-project-metrics" class="modal-metrics-table">
-                <!-- Injected via JS -->
-              </div>
+              <div id="modal-project-metrics" class="modal-metrics-table"></div>
             </div>
           </div>
 
@@ -1263,7 +1311,7 @@
       </div>
     </div>
 
-    <!-- Footer Identity Bar -->
+    <!-- Footer -->
     <footer class="site-footer" role="contentinfo">
       <div class="container footer-inner">
         <div class="footer-left">
