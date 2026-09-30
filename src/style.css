@@ -3194,6 +3194,95 @@ img, svg {
   }
 }
 
+/* ===================================================================
+   3D FLOATING & LEVITATION SYSTEM
+   =================================================================== */
+
+@keyframes cyber-float-card-1 {
+  0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translateY(-10px) rotateX(1.8deg) rotateY(-1.2deg); }
+  100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+}
+
+@keyframes cyber-float-card-2 {
+  0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translateY(-8px) rotateX(-1.5deg) rotateY(1.8deg); }
+  100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+}
+
+@keyframes cyber-hero-portrait-float {
+  0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translateY(-14px) rotateX(2.5deg) rotateY(-2deg); }
+  100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+}
+
+@keyframes orbital-float-a {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-9px) scale(1.03); }
+}
+
+@keyframes orbital-float-b {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-7px) scale(1.02); }
+}
+
+/* Apply 3D Float to Hero Elements */
+.hero-3d-card-wrapper {
+  animation: cyber-hero-portrait-float 6.5s ease-in-out infinite;
+}
+
+.orbital-badge.badge-top-right {
+  animation: orbital-float-a 4.2s ease-in-out infinite;
+}
+
+.orbital-badge.badge-bottom-left {
+  animation: orbital-float-b 5.0s ease-in-out infinite 0.7s;
+}
+
+.about-photo-showcase .cyber-secondary-portrait-box {
+  animation: cyber-float-card-2 7s ease-in-out infinite;
+}
+
+/* 3D Floating for Service Cards */
+.services-grid .service-card:nth-child(odd) {
+  animation: cyber-float-card-1 6.8s ease-in-out infinite;
+}
+
+.services-grid .service-card:nth-child(even) {
+  animation: cyber-float-card-2 7.2s ease-in-out infinite 1.2s;
+}
+
+/* 3D Floating for Telemetry HUD */
+.telemetry-grid .telemetry-hud-card:nth-child(odd) {
+  animation: cyber-float-card-2 6s ease-in-out infinite;
+}
+
+.telemetry-grid .telemetry-hud-card:nth-child(even) {
+  animation: cyber-float-card-1 6.4s ease-in-out infinite 0.8s;
+}
+
+/* Enhanced 3D Hover Levitation on Cards */
+.service-card,
+.project-tilt-card,
+.contact-method-card,
+.telemetry-hud-card,
+.about-text-card {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.service-card:hover,
+.contact-method-card:hover,
+.telemetry-hud-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(var(--primary-rgb), 0.35);
+  border-color: var(--primary);
+}
+
+.project-tilt-card:hover {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(var(--primary-rgb), 0.4);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

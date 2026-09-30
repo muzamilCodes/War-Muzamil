@@ -29,9 +29,9 @@ export function initHeroCanvas() {
   // Scene setup
   scene = new THREE.Scene();
 
-  // Camera setup
+  // Camera setup - starts zoomed in close for dramatic pullback reveal
   camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-  camera.position.z = 6.2;
+  camera.position.z = 2.2;
 
   // WebGL Renderer
   renderer = new THREE.WebGLRenderer({
@@ -266,4 +266,28 @@ export function setParticleSpeed(speed) {
 
 export function setParallaxGain(gain) {
   parallaxGain = parseFloat(gain) || 1.0;
+}
+
+// Cinematic 3D Camera Pullback Transition (Zoom-out from deep close space)
+export function triggerCameraPullback() {
+  if (!camera) return;
+  camera.position.z = 2.0;
+  const startTime = performance.now();
+  const duration = 2400; // 2.4s cinematic dolly pullback
+  const startZ = 2.0;
+  const targetZ = 6.2;
+
+  function stepPullback(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Exponential out ease for dramatic snap and deceleration
+    const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    camera.position.z = startZ + (targetZ - startZ) * ease;
+    if (progress < 1) {
+      requestAnimationFrame(stepPullback);
+    } else {
+      camera.position.z = targetZ;
+    }
+  }
+  requestAnimationFrame(stepPullback);
 }
