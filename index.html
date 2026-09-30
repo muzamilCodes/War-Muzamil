@@ -117,14 +117,14 @@
             <span id="header-utc-clock" class="hud-mono-clock">00:00:00 UTC</span>
           </div>
 
-          <button id="audio-toggle-btn" class="hud-btn" type="button" aria-label="Toggle cyber audio effects" title="Audio Synthesizer (Click to unmute)">
+          <button id="audio-toggle-btn" class="hud-btn" type="button" aria-label="Toggle cyber audio sound" title="Audio Sound (Click to mute/unmute)">
             <svg class="hud-icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
               <path class="speaker-base" d="M11 5L6 9H2v6h4l5 4V5z"/>
               <path class="speaker-wave" d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
               <path class="speaker-wave-outer" d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
               <line class="speaker-mute-slash" x1="1" y1="1" x2="23" y2="23" stroke="#ff3366" stroke-width="2.5"/>
             </svg>
-            <span class="hud-btn-text">SFX</span>
+            <span class="hud-btn-text">SOUND</span>
           </button>
 
           <div class="palette-picker-wrapper">
@@ -598,15 +598,175 @@
             </p>
           </div>
 
-          <!-- 3D Tilt Projects Grid -->
+          <!-- 3D Tilt Projects Grid (All 9 Real Shipped Platforms) -->
           <div class="projects-grid">
             
-            <!-- Project 1: StudyMaterial Platform -->
+            <!-- Project 1: Sportify Kashmir Store (Flagship) -->
+            <article class="project-tilt-card flagship-project-card" data-project-id="sportify" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Sportify Kashmir Flagship details">
+              <div class="card-glare" aria-hidden="true"></div>
+              <div class="card-inner">
+                <div class="card-top-meta">
+                  <span class="project-num">PROJECT_01 // FLAGSHIP</span>
+                  <span class="project-stack-tag">React.js · Tailwind CSS · Node.js</span>
+                </div>
+                <div class="card-image-preview">
+                  <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop" alt="Sportify Kashmir Store Flagship banner" class="project-thumb-img" loading="lazy" />
+                  <div class="visual-badge"><span class="pulse-dot"></span> FLAGSHIP STORE</div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Sportify Kashmir Store</h3>
+                  <p class="card-tagline">Athletic Gear & Custom Team Apparel Platform</p>
+                  <p class="card-desc">
+                    Official e-commerce flagship platform for cricket equipment, athletic gear, and custom jersey printing. Integrated with dynamic cart endpoints, persistent cart state, and instant order dispatch.
+                  </p>
+                  <div class="card-tech-chips">
+                    <span>React.js</span>
+                    <span>Tailwind CSS</span>
+                    <span>Node.js</span>
+                    <span>Context API</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-action-text">OPEN FULL SPEC & DEMO ❯</span>
+                  <span class="card-status-dot"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2: Zaika Restaurant Platform -->
+            <article class="project-tilt-card" data-project-id="zaika" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Zaika Restaurant details">
+              <div class="card-glare" aria-hidden="true"></div>
+              <div class="card-inner">
+                <div class="card-top-meta">
+                  <span class="project-num">PROJECT_02</span>
+                  <span class="project-stack-tag">React.js · Node.js · Express · OTP</span>
+                </div>
+                <div class="card-image-preview">
+                  <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=400&fit=crop" alt="Zaika Restaurant Platform banner" class="project-thumb-img" loading="lazy" />
+                  <div class="visual-badge"><span class="pulse-dot"></span> PURE OTP AUTH</div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Zaika Restaurant Platform</h3>
+                  <p class="card-tagline">Restaurant Ordering & Table Reservations</p>
+                  <p class="card-desc">
+                    Contemporary dining and food delivery web application. Features pure secure OTP authentication (zero OTP screen/API leak), dynamic dish catalogs, and automated reservation management.
+                  </p>
+                  <div class="card-tech-chips">
+                    <span>React.js</span>
+                    <span>Node.js</span>
+                    <span>Express</span>
+                    <span>MongoDB</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-action-text">OPEN FULL SPEC & DEMO ❯</span>
+                  <span class="card-status-dot"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3: WAR AI Agent Assistant -->
+            <article class="project-tilt-card" data-project-id="warai" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View WAR AI Agent details">
+              <div class="card-glare" aria-hidden="true"></div>
+              <div class="card-inner">
+                <div class="card-top-meta">
+                  <span class="project-num">PROJECT_03</span>
+                  <span class="project-stack-tag">Next.js · Speech API · Roman Urdu</span>
+                </div>
+                <div class="card-image-preview">
+                  <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=400&fit=crop" alt="WAR AI Agent Assistant banner" class="project-thumb-img" loading="lazy" />
+                  <div class="visual-badge"><span class="pulse-dot"></span> MULTILINGUAL AI</div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">WAR AI Agent Assistant</h3>
+                  <p class="card-tagline">Voice & Text Multilingual AI (Roman Urdu & English)</p>
+                  <p class="card-desc">
+                    Intelligent conversational agent with bi-directional voice recognition defaulted to Roman Urdu and English. Features real-time voice synthesis and dynamic cyber HUD styling.
+                  </p>
+                  <div class="card-tech-chips">
+                    <span>Next.js</span>
+                    <span>Speech API</span>
+                    <span>Roman Urdu</span>
+                    <span>Tailwind CSS</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-action-text">OPEN FULL SPEC & DEMO ❯</span>
+                  <span class="card-status-dot"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 4: ThoughtShare Platform -->
+            <article class="project-tilt-card" data-project-id="thoughtshare" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ThoughtShare details">
+              <div class="card-glare" aria-hidden="true"></div>
+              <div class="card-inner">
+                <div class="card-top-meta">
+                  <span class="project-num">PROJECT_04</span>
+                  <span class="project-stack-tag">Next.js · AI Assistant · Analytics</span>
+                </div>
+                <div class="card-image-preview">
+                  <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop" alt="ThoughtShare Platform banner" class="project-thumb-img" loading="lazy" />
+                  <div class="visual-badge"><span class="pulse-dot"></span> CREATOR ENGINE</div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">ThoughtShare Platform</h3>
+                  <p class="card-tagline">Publishing Hub with AI Assistant & Analytics</p>
+                  <p class="card-desc">
+                    Full-featured creator publishing ecosystem. Includes autosaved draft workspaces, AI writing assistant, author analytics, universal search, and community reports.
+                  </p>
+                  <div class="card-tech-chips">
+                    <span>Next.js</span>
+                    <span>MongoDB</span>
+                    <span>AI Assistant</span>
+                    <span>Analytics</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-action-text">OPEN FULL SPEC & DEMO ❯</span>
+                  <span class="card-status-dot"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 5: Organic Food Kashmir -->
+            <article class="project-tilt-card" data-project-id="organicfood" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Organic Food Kashmir details">
+              <div class="card-glare" aria-hidden="true"></div>
+              <div class="card-inner">
+                <div class="card-top-meta">
+                  <span class="project-num">PROJECT_05</span>
+                  <span class="project-stack-tag">React.js · Node.js · Express · Saffron</span>
+                </div>
+                <div class="card-image-preview">
+                  <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=800&h=400&fit=crop" alt="Organic Food Kashmir banner" class="project-thumb-img" loading="lazy" />
+                  <div class="visual-badge"><span class="pulse-dot"></span> VALLEY COMMERCE</div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">Organic Food Kashmir</h3>
+                  <p class="card-tagline">Valley Organic Produce & Saffron E-Commerce</p>
+                  <p class="card-desc">
+                    E-commerce marketplace dedicated to organic Kashmiri valley harvest: pure saffron, walnuts, raw honey, and dry fruits with instant cart synchronization and ordering.
+                  </p>
+                  <div class="card-tech-chips">
+                    <span>React.js</span>
+                    <span>Node.js</span>
+                    <span>Express</span>
+                    <span>MongoDB</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-action-text">OPEN FULL SPEC & DEMO ❯</span>
+                  <span class="card-status-dot"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 6: StudyMaterial Platform -->
             <article class="project-tilt-card" data-project-id="studymaterial" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View StudyMaterial Platform details">
               <div class="card-glare" aria-hidden="true"></div>
               <div class="card-inner">
                 <div class="card-top-meta">
-                  <span class="project-num">PROJECT_01</span>
+                  <span class="project-num">PROJECT_06</span>
                   <span class="project-stack-tag">Next.js · React · MongoDB</span>
                 </div>
                 <div class="card-image-preview">
@@ -614,13 +774,13 @@
                   <div class="visual-badge"><span class="pulse-dot"></span> LIVE PLATFORM</div>
                 </div>
                 <div class="card-content">
-                  <h3 class="card-title">StudyMaterial Platform</h3>
-                  <p class="card-tagline">Educational Resource Hub</p>
+                  <h3 class="card-title">StudyMaterial Hub</h3>
+                  <p class="card-tagline">Class-Wise Academic Notes & Solved Papers</p>
                   <p class="card-desc">
-                    Smart learning platform providing class-wise educational materials, notes, 10-year solved board papers, and interactive quizzes for students across medical, commerce, and non-med streams.
+                    Smart educational hub providing class-wise study materials, chapter notes, 10-year solved state board papers, and interactive quizzes for students across medical and commerce streams.
                   </p>
                   <div class="card-tech-chips">
-                    <span>Next.js</span>
+                    <span>Next.js 14</span>
                     <span>MongoDB</span>
                     <span>Tailwind CSS</span>
                     <span>TypeScript</span>
@@ -633,12 +793,12 @@
               </div>
             </article>
 
-            <!-- Project 2: Quick Services Marketplace -->
+            <!-- Project 7: Quick Services Marketplace -->
             <article class="project-tilt-card" data-project-id="quickservices" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Quick Services Marketplace details">
               <div class="card-glare" aria-hidden="true"></div>
               <div class="card-inner">
                 <div class="card-top-meta">
-                  <span class="project-num">PROJECT_02</span>
+                  <span class="project-num">PROJECT_07</span>
                   <span class="project-stack-tag">React.js · Node.js · Express</span>
                 </div>
                 <div class="card-image-preview">
@@ -647,14 +807,14 @@
                 </div>
                 <div class="card-content">
                   <h3 class="card-title">Quick Services Marketplace</h3>
-                  <p class="card-tagline">Local Services Booking Platform</p>
+                  <p class="card-tagline">Hyper-Local Services & Technician Booking</p>
                   <p class="card-desc">
-                    On-demand local services platform connecting users with local service providers. Features OTP verification, real-time booking dashboards, and customer reviews.
+                    On-demand local services platform connecting users with electricians, plumbers, and technicians. Features OTP verification and real-time booking dashboards.
                   </p>
                   <div class="card-tech-chips">
                     <span>React.js</span>
                     <span>Node.js</span>
-                    <span>Express.js</span>
+                    <span>Express</span>
                     <span>MongoDB</span>
                   </div>
                 </div>
@@ -665,12 +825,44 @@
               </div>
             </article>
 
-            <!-- Project 3: Talexa Job Recruitment Portal -->
+            <!-- Project 8: ASIAN MALL Platform -->
+            <article class="project-tilt-card" data-project-id="asianmall" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ASIAN MALL details">
+              <div class="card-glare" aria-hidden="true"></div>
+              <div class="card-inner">
+                <div class="card-top-meta">
+                  <span class="project-num">PROJECT_08</span>
+                  <span class="project-stack-tag">Next.js · Tailwind · Framer</span>
+                </div>
+                <div class="card-image-preview">
+                  <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=800&h=400&fit=crop" alt="ASIAN MALL banner" class="project-thumb-img" loading="lazy" />
+                  <div class="visual-badge"><span class="pulse-dot"></span> RETAIL PLATFORM</div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">ASIAN MALL Platform</h3>
+                  <p class="card-tagline">Modern Retail Shopping Directory & Floor Maps</p>
+                  <p class="card-desc">
+                    Modern retail shopping destination platform with responsive store directory, dynamic floor map navigation, catalog filtering, and sleek product showcases.
+                  </p>
+                  <div class="card-tech-chips">
+                    <span>Next.js</span>
+                    <span>React</span>
+                    <span>Tailwind CSS</span>
+                    <span>Framer Motion</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-action-text">OPEN FULL SPEC & DEMO ❯</span>
+                  <span class="card-status-dot"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 9: Talexa Job Recruitment Portal -->
             <article class="project-tilt-card" data-project-id="talexa" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Talexa Job Portal details">
               <div class="card-glare" aria-hidden="true"></div>
               <div class="card-inner">
                 <div class="card-top-meta">
-                  <span class="project-num">PROJECT_03</span>
+                  <span class="project-num">PROJECT_09</span>
                   <span class="project-stack-tag">React.js · Next.js · PostgreSQL</span>
                 </div>
                 <div class="card-image-preview">
@@ -687,70 +879,6 @@
                     <span>React.js</span>
                     <span>Next.js</span>
                     <span>PostgreSQL</span>
-                    <span>Node.js</span>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <span class="card-action-text">OPEN FULL SPEC & DEMO ❯</span>
-                  <span class="card-status-dot"></span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 4: ASIAN MALL E-Commerce -->
-            <article class="project-tilt-card" data-project-id="asianmall" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ASIAN MALL details">
-              <div class="card-glare" aria-hidden="true"></div>
-              <div class="card-inner">
-                <div class="card-top-meta">
-                  <span class="project-num">PROJECT_04</span>
-                  <span class="project-stack-tag">Next.js · Tailwind · Framer</span>
-                </div>
-                <div class="card-image-preview">
-                  <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=800&h=400&fit=crop" alt="ASIAN MALL banner" class="project-thumb-img" loading="lazy" />
-                  <div class="visual-badge"><span class="pulse-dot"></span> RETAIL PLATFORM</div>
-                </div>
-                <div class="card-content">
-                  <h3 class="card-title">ASIAN MALL E-Commerce</h3>
-                  <p class="card-tagline">Modern Retail Shopping Directory</p>
-                  <p class="card-desc">
-                    Modern retail shopping mall platform with responsive landing pages, interactive store directory, dynamic catalog filtering, and sleek product showcases.
-                  </p>
-                  <div class="card-tech-chips">
-                    <span>Next.js</span>
-                    <span>React</span>
-                    <span>Tailwind CSS</span>
-                    <span>Framer Motion</span>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <span class="card-action-text">OPEN FULL SPEC & DEMO ❯</span>
-                  <span class="card-status-dot"></span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 5: Sportify Kashmir V2 -->
-            <article class="project-tilt-card" data-project-id="sportify" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Sportify Kashmir details">
-              <div class="card-glare" aria-hidden="true"></div>
-              <div class="card-inner">
-                <div class="card-top-meta">
-                  <span class="project-num">PROJECT_05</span>
-                  <span class="project-stack-tag">React.js · Vite · Context API</span>
-                </div>
-                <div class="card-image-preview">
-                  <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop" alt="Sportify Kashmir Store banner" class="project-thumb-img" loading="lazy" />
-                  <div class="visual-badge"><span class="pulse-dot"></span> E-COMMERCE</div>
-                </div>
-                <div class="card-content">
-                  <h3 class="card-title">Sportify Kashmir Store (V2)</h3>
-                  <p class="card-tagline">Athletic Gear & Custom Team Apparel Platform</p>
-                  <p class="card-desc">
-                    Upgraded e-commerce platform engineered for sports gear and custom athletic apparel. Incorporates cart state management and high-speed checkout flows.
-                  </p>
-                  <div class="card-tech-chips">
-                    <span>React.js</span>
-                    <span>Vite</span>
-                    <span>Tailwind CSS</span>
                     <span>Node.js</span>
                   </div>
                 </div>
