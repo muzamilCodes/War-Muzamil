@@ -96,7 +96,21 @@
           </div>
         </a>
 
-        <!-- Header Actions: Clock, Sound, Theme Palette -->
+        <!-- Section Navigation -->
+        <nav class="site-nav" role="navigation" aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="#hero" class="nav-link active" data-nav="hero"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="#about" class="nav-link" data-nav="about"><i class="fa-solid fa-user"></i> About</a></li>
+            <li><a href="#services" class="nav-link" data-nav="services"><i class="fa-solid fa-layer-group"></i> Services</a></li>
+            <li><a href="#projects" class="nav-link" data-nav="projects"><i class="fa-solid fa-code"></i> Projects</a></li>
+            <li><a href="#skills" class="nav-link" data-nav="skills"><i class="fa-solid fa-microchip"></i> Skills</a></li>
+            <li><a href="#journey" class="nav-link" data-nav="journey"><i class="fa-solid fa-timeline"></i> Journey</a></li>
+            <li><a href="#terminal" class="nav-link" data-nav="terminal"><i class="fa-solid fa-terminal"></i> CLI</a></li>
+            <li><a href="#contact" class="nav-link" data-nav="contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Header Actions: Clock, Sound, Theme Palette, Mobile Toggle -->
         <div class="header-actions">
           <div class="header-hud-mini" aria-live="polite">
             <span class="pulse-dot"></span>
@@ -133,9 +147,34 @@
               </button>
             </div>
           </div>
+
+          <button id="mobile-nav-toggle" class="mobile-nav-btn" type="button" aria-label="Open mobile navigation menu" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
         </div>
       </div>
     </header>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="mobile-menu-drawer" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <ul class="mobile-nav-links">
+          <li><a href="#hero" class="mobile-nav-link">00 // Home & 3D Core</a></li>
+          <li><a href="#about" class="mobile-nav-link">01 // Profile & Portrait</a></li>
+          <li><a href="#services" class="mobile-nav-link">02 // Engineering Services</a></li>
+          <li><a href="#projects" class="mobile-nav-link">03 // Featured Projects</a></li>
+          <li><a href="#skills" class="mobile-nav-link">04 // Technology Radar</a></li>
+          <li><a href="#journey" class="mobile-nav-link">05 // Career Milestones</a></li>
+          <li><a href="#terminal" class="mobile-nav-link">06 // Interactive CLI</a></li>
+          <li><a href="#contact" class="mobile-nav-link">07 // Uplink / Contact</a></li>
+        </ul>
+        <div class="mobile-hud-summary">
+          <div class="blueprint-meta">WAR MUZAMIL · FULL STACK DEVELOPER · KASHMIR, INDIA</div>
+        </div>
+      </div>
+    </div>
 
     <!-- Main Content Container -->
     <main id="main-content">
@@ -1438,7 +1477,7 @@
       <div class="container footer-inner">
         <div class="footer-left">
           <span class="footer-brand">WAR MUZAMIL</span>
-          <span class="footer-copy">FULL STACK DEVELOPER & MERN SPECIALIST · KASHMIR, INDIA</span>
+          <span class="footer-copy">FULL STACK DEVELOPER · KASHMIR, INDIA</span>
         </div>
         <div class="footer-center">
           <span class="footer-author">Handwara, Srinagar / J&K · warmuzamil68@gmail.com</span>
