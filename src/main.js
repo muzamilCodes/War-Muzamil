@@ -33,9 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initTelemetry();
   initContactForm();
 
-  // 2. Setup Animations & Custom Cursor
+  // 2. Setup Cyberpunk Preloader (0% to 100% Boot Sequence)
+  initPreloader();
+
+  // 3. Setup Animations & Custom Cursor
   setupCyberCursor();
-  setupGsapAnimations();
   setupTypingAnimation();
 
   // 3. Setup Navigation & Header
@@ -50,6 +52,86 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Setup Theme & Audio
   setupThemeAndAudio();
 });
+
+// ===================================================================
+// CYBERPUNK 0% TO 100% PRELOADER SEQUENCE
+// ===================================================================
+function initPreloader() {
+  const preloader = document.getElementById('cyber-preloader');
+  const percentEl = document.getElementById('preloader-percent');
+  const barEl = document.getElementById('preloader-bar');
+  const statusEl = document.getElementById('preloader-status');
+
+  if (!preloader || !percentEl || !barEl || !statusEl) {
+    setupGsapAnimations();
+    return;
+  }
+
+  // Lock background scroll during initial boot sequence
+  document.body.style.overflow = 'hidden';
+
+  let current = 0;
+  const target = 100;
+  const duration = 1800; // 1.8 seconds smooth cyber boot
+  const startTime = performance.now();
+
+  const statusMilestones = [
+    { threshold: 0, text: '[01/04] BOOTING SYSTEM ENVIRONMENT...' },
+    { threshold: 25, text: '[02/04] COMPILING 3D WEBGL SHADERS...' },
+    { threshold: 55, text: '[03/04] CONNECTING MERN CLOUD MANIFOLD...' },
+    { threshold: 85, text: '[04/04] CALIBRATING NEON OPTICS & SENSORS...' },
+    { threshold: 100, text: 'SYSTEM ONLINE // ACCESS GRANTED' }
+  ];
+
+  function updatePreloader(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    current = Math.min(Math.floor(eased * target), 100);
+
+    percentEl.textContent = current;
+    barEl.style.width = `${current}%`;
+    preloader.setAttribute('aria-valuenow', current);
+
+    // Update status text
+    for (let i = statusMilestones.length - 1; i >= 0; i--) {
+      if (current >= statusMilestones[i].threshold) {
+        if (statusEl.textContent !== statusMilestones[i].text) {
+          statusEl.textContent = statusMilestones[i].text;
+        }
+        break;
+      }
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(updatePreloader);
+    } else {
+      percentEl.textContent = '100';
+      barEl.style.width = '100%';
+      statusEl.textContent = 'SYSTEM ONLINE // ACCESS GRANTED';
+      statusEl.style.color = 'var(--success)';
+
+      // Short cinematic pause at 100%, then slide up curtain
+      setTimeout(() => {
+        gsap.to(preloader, {
+          yPercent: -100,
+          opacity: 0,
+          duration: 0.85,
+          ease: 'power4.inOut',
+          onComplete: () => {
+            preloader.style.display = 'none';
+            document.body.style.overflow = '';
+            setupGsapAnimations();
+          }
+        });
+      }, 300);
+    }
+  }
+
+  requestAnimationFrame(updatePreloader);
+}
 
 // ===================================================================
 // CUSTOM CYBER CURSOR FOLLOWER
