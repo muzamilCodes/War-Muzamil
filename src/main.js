@@ -246,7 +246,7 @@ function setupTypingAnimation() {
   if (!typedEl) return;
 
   const roles = [
-    'Full Stack Developer & MERN Specialist',
+    'Full Stack Developer',
     'Next.js 14 & React Architecture',
     'Node.js & Express REST APIs',
     'MongoDB & PostgreSQL Databases',

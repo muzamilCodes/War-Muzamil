@@ -278,20 +278,20 @@ export function initProjects() {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
+      const rotateX = ((y - centerY) / centerY) * -12;
+      const rotateY = ((x - centerX) / centerX) * 12;
 
-      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+      card.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(28px) translateY(-8px)`;
 
       if (glare) {
         const percentX = (x / rect.width) * 100;
         const percentY = (y / rect.height) * 100;
-        glare.style.background = `radial-gradient(circle at ${percentX}% ${percentY}%, rgba(0, 240, 255, 0.25) 0%, transparent 65%)`;
+        glare.style.background = `radial-gradient(circle at ${percentX}% ${percentY}%, rgba(0, 240, 255, 0.35) 0%, transparent 60%)`;
       }
     });
 
     card.addEventListener('pointerleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px) translateY(0px)';
       if (glare) glare.style.background = '';
     });
 

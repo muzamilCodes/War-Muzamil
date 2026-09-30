@@ -1,6 +1,6 @@
 /* ===================================================================
    WAR MUZAMIL // CYBERPUNK 3D PORTFOLIO DESIGN SYSTEM
-   Full Stack Developer & MERN Specialist · Kashmir, India
+   Full Stack Developer · Kashmir, India
    =================================================================== */
 
 :root {
@@ -1810,7 +1810,8 @@ img, svg {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 30px;
+  perspective: 1400px;
 }
 
 .project-tilt-card {
@@ -1818,18 +1819,62 @@ img, svg {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 22px;
+  padding: 24px;
   cursor: pointer;
-  perspective: 1000px;
   transform-style: preserve-3d;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow 0.35s ease;
   overflow: hidden;
   text-align: left;
+  will-change: transform;
 }
 
-.project-tilt-card:hover {
-  border-color: var(--border-bright);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), var(--glow-soft);
+/* Holographic animated neon border beam */
+.project-tilt-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    rgba(var(--primary-rgb), 0.4),
+    transparent 35%
+  );
+  animation: cyber-border-spin 7s linear infinite;
+  opacity: 0.25;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-tilt-card:hover::before {
+  opacity: 1;
+  animation-duration: 3.5s;
+}
+
+.project-tilt-card::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  background: rgba(10, 15, 27, 0.94);
+  border-radius: calc(var(--radius-lg) - 1.5px);
+  z-index: 1;
+}
+
+.flagship-project-card::before {
+  opacity: 0.65;
+  background: conic-gradient(
+    transparent,
+    var(--secondary),
+    var(--primary),
+    transparent 45%
+  );
+}
+
+.flagship-project-card {
+  border-color: var(--primary) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(var(--primary-rgb), 0.35) !important;
 }
 
 .card-glare {
@@ -1839,7 +1884,7 @@ img, svg {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 50%, rgba(var(--primary-rgb), 0.15) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(var(--primary-rgb), 0.2) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.25s ease;
   z-index: 2;
@@ -1849,12 +1894,14 @@ img, svg {
   opacity: 1;
 }
 
+/* 3D Depth Layering on Card Components */
 .card-inner {
   position: relative;
   z-index: 3;
   display: flex;
   flex-direction: column;
   height: 100%;
+  transform-style: preserve-3d;
 }
 
 .card-top-meta {
@@ -1862,6 +1909,8 @@ img, svg {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 14px;
+  transform: translateZ(26px);
+  transform-style: preserve-3d;
 }
 
 .project-num {
@@ -1883,13 +1932,16 @@ img, svg {
 }
 
 .card-image-preview {
-  height: 150px;
+  height: 160px;
   background: #090e18;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
   margin-bottom: 18px;
   position: relative;
   overflow: hidden;
+  transform: translateZ(38px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 }
 
 .project-thumb-img {
@@ -1903,6 +1955,11 @@ img, svg {
   transform: scale(1.06);
 }
 
+.project-tilt-card:hover .card-image-preview {
+  transform: translateZ(56px) scale(1.03);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(var(--primary-rgb), 0.5);
+}
+
 .visual-badge {
   position: absolute;
   bottom: 8px;
@@ -1911,7 +1968,7 @@ img, svg {
   font-size: 0.6rem;
   letter-spacing: 0.08em;
   color: #ffffff;
-  background: rgba(5, 7, 12, 0.85);
+  background: rgba(5, 7, 12, 0.88);
   backdrop-filter: blur(8px);
   padding: 3px 8px;
   border-radius: 12px;
@@ -1919,30 +1976,46 @@ img, svg {
   display: flex;
   align-items: center;
   gap: 6px;
+  transform: translateZ(52px);
+  animation: badge-glow-3d 3s infinite alternate;
+}
+
+@keyframes badge-glow-3d {
+  0% { box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.2); }
+  100% { box-shadow: 0 0 16px rgba(var(--primary-rgb), 0.7); }
 }
 
 .card-title {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
+  transform: translateZ(34px);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.project-tilt-card:hover .card-title {
+  color: var(--primary);
+  text-shadow: 0 0 18px rgba(var(--primary-rgb), 0.6);
 }
 
 .card-tagline {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--primary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   text-transform: uppercase;
+  transform: translateZ(28px);
 }
 
 .card-desc {
   font-size: 0.86rem;
   color: #94a3b8;
-  line-height: 1.55;
+  line-height: 1.6;
   margin-bottom: 16px;
   flex: 1;
+  transform: translateZ(22px);
 }
 
 .card-tech-chips {
@@ -1950,6 +2023,7 @@ img, svg {
   flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 16px;
+  transform: translateZ(30px);
 }
 
 .card-tech-chips span {
@@ -1960,6 +2034,15 @@ img, svg {
   padding: 2px 7px;
   border-radius: 3px;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.project-tilt-card:hover .card-tech-chips span {
+  transform: translateZ(14px);
+  border-color: rgba(var(--primary-rgb), 0.5);
+  background: rgba(var(--primary-rgb), 0.15);
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.3);
 }
 
 .card-footer {
@@ -1968,6 +2051,7 @@ img, svg {
   align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 14px;
+  transform: translateZ(24px);
 }
 
 .card-action-text {

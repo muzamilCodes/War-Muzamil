@@ -28,12 +28,12 @@ const COMMANDS_MAP = {
   theme <name>     - Switch neon palette (cyan, emerald, amber, violet)`,
 
   whoami: () => `NAME: War Muzamil
-ROLE: Full Stack Developer & MERN Specialist
+ROLE: Full Stack Developer
 LOCATION: Handwara, Srinagar / Kashmir, India
 EXPERIENCE: 1+ Years Practical Experience · 7+ Shipped Projects
 STATUS: AVAILABLE for Freelance & Full-Time Software Engineering`,
 
-  bio: () => `WAR MUZAMIL // FULL STACK DEVELOPER & MERN SPECIALIST
+  bio: () => `WAR MUZAMIL // FULL STACK DEVELOPER
 Motivated software engineer with hands-on experience building dynamic,
 data-driven web applications that solve real-world problems.
 Specializes in React.js, Next.js, Node.js, Express, MongoDB, and PostgreSQL,
