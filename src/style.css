@@ -476,24 +476,7 @@ img, svg {
 }
 
 .cyber-scanlines {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.25) 50%
-  ), linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 0.02),
-    rgba(0, 255, 0, 0.01),
-    rgba(0, 0, 255, 0.02)
-  );
-  background-size: 100% 3px, 6px 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.12;
+  display: none;
 }
 
 .cyber-grid-overlay {
@@ -3281,6 +3264,63 @@ img, svg {
 
 .project-tilt-card:hover {
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(var(--primary-rgb), 0.4);
+}
+
+/* ===================================================================
+   ACTIVE PAGE FLOATING SYSTEM ("Jis Jis Page Par User Jaye Voh Float Kare")
+   =================================================================== */
+
+.page-floating-active {
+  animation: cyber-page-levitation 6.5s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+@keyframes cyber-page-levitation {
+  0% { transform: translateY(0px) rotateX(0deg); }
+  50% { transform: translateY(-16px) rotateX(1.2deg); }
+  100% { transform: translateY(0px) rotateX(0deg); }
+}
+
+/* 3D Floating for Project Tilt Cards */
+.projects-grid .project-tilt-card:nth-child(odd) {
+  animation: cyber-float-card-1 7.2s ease-in-out infinite;
+}
+
+.projects-grid .project-tilt-card:nth-child(even) {
+  animation: cyber-float-card-2 7.6s ease-in-out infinite 0.8s;
+}
+
+/* 3D Floating for About Content Elements */
+.about-content-grid .about-text-card {
+  animation: cyber-float-card-1 6.8s ease-in-out infinite;
+}
+
+/* 3D Floating for Radar Chart & Stats Panel */
+.radar-layout-grid .radar-canvas-container {
+  animation: cyber-float-card-2 6.5s ease-in-out infinite;
+}
+
+.radar-layout-grid .skills-stat-panel {
+  animation: cyber-float-card-1 7.0s ease-in-out infinite 0.7s;
+}
+
+/* 3D Floating for Terminal Window */
+.terminal-mockup-window {
+  animation: cyber-float-card-1 6.8s ease-in-out infinite;
+}
+
+/* 3D Floating for Contact Form Card */
+.contact-form-card {
+  animation: cyber-float-card-2 6.5s ease-in-out infinite;
+}
+
+/* 3D Floating for Metric Pills */
+.hero-metrics-grid .metric-pill:nth-child(odd) {
+  animation: orbital-float-a 4.8s ease-in-out infinite;
+}
+
+.hero-metrics-grid .metric-pill:nth-child(even) {
+  animation: orbital-float-b 5.2s ease-in-out infinite 0.6s;
 }
 
 @media (prefers-reduced-motion: reduce) {

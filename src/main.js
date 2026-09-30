@@ -15,7 +15,7 @@ import {
   setNeonPalette,
   setParticleSpeed,
   setParallaxGain,
-  triggerCameraPullback
+  triggerZoomInThenZoomOut
 } from './hero-canvas.js';
 import { initRadarChart } from './radar-chart.js';
 import { initProjects } from './projects.js';
@@ -52,6 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Setup Theme & Audio
   setupThemeAndAudio();
+
+  // 7. Setup Active Page Floating System ("jis jis page par user jaye voh float kare")
+  setupActivePageFloatingObserver();
 });
 
 // ===================================================================
@@ -120,13 +123,13 @@ function initPreloader() {
       statusEl.textContent = 'SYSTEM ONLINE 100% // WAR MUZAMIL MAINFRAME ACTIVE';
       statusEl.style.color = 'var(--success)';
 
-      // Brief dramatic pause at 100%, then trigger the pull-back zoom-out reveal
+      // Brief dramatic pause at 100%, then trigger the zoom-in then zoom-out reveal
       setTimeout(() => {
-        // 1. Three.js Camera Dolly Pullback
-        triggerCameraPullback();
+        // 1. Three.js Camera: Zoom-in (inward pull towards user) then Zoom-out
+        triggerZoomInThenZoomOut();
 
-        // 2. DOM Interface Zoom-out Pullback ("peeche ki taraf kheench raha hai")
-        setupHeroPullbackReveal();
+        // 2. DOM Interface: Zoom-in pull towards user, then Zoom-out together
+        setupHeroZoomInThenZoomOut();
 
         // 3. Preloader Curtain Reveal
         gsap.to(preloader, {
@@ -139,6 +142,7 @@ function initPreloader() {
             document.body.style.overflow = '';
             setupGsapAnimations();
             setupUniversal3DTilt();
+            setupActivePageFloatingObserver();
           }
         });
       }, 300);
@@ -149,47 +153,55 @@ function initPreloader() {
 }
 
 // ===================================================================
-// CINEMATIC HERO ZOOM-OUT PULLBACK REVEAL
-// Simulates an invisible cyber force pulling the entire landscape back
+// CINEMATIC 2-PHASE TRANSITION: ZOOM-IN FIRST, THEN ZOOM-OUT TOGETHER
+// "Pehle zoomin kare... lagna chaiye apne aur kheench raha hai inko,
+//  aur uske baad aik sath unko zoomout karna chahiye"
 // ===================================================================
-function setupHeroPullbackReveal() {
+function setupHeroZoomInThenZoomOut() {
   const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (isReducedMotion) return;
 
-  // Zoom-out pullback for hero container
-  gsap.fromTo('.hero-container-layout',
-    {
-      scale: 1.42,
-      opacity: 0,
-      filter: 'blur(14px)',
-      y: 60,
-      transformOrigin: 'center center'
-    },
-    {
-      scale: 1,
+  // 1. Two-phase zoom animation for the Hero layout
+  const heroTl = gsap.timeline();
+  heroTl
+    // Phase 1: Rapid Inward Pull / Zoom-In ("apne aur kheench raha hai inko")
+    .fromTo('.hero-container-layout',
+      {
+        scale: 0.85,
+        opacity: 0,
+        filter: 'blur(10px)',
+        transformOrigin: 'center center'
+      },
+      {
+        scale: 1.55,
+        opacity: 1,
+        filter: 'blur(3px)',
+        duration: 0.75,
+        ease: 'power2.inOut'
+      }
+    )
+    // Phase 2: Smooth Zoom-Out together into settled view ("aik sath unko zoomout karna chahiye")
+    .to('.hero-container-layout', {
+      scale: 1.0,
       opacity: 1,
       filter: 'blur(0px)',
-      y: 0,
-      duration: 2.2,
-      ease: 'power4.out',
-      delay: 0.05
-    }
-  );
-
-  // Zoom-out pullback for hero canvas background
-  gsap.fromTo('#hero-canvas-container',
-    {
-      scale: 1.35,
-      filter: 'blur(8px)',
-      transformOrigin: 'center center'
-    },
-    {
-      scale: 1,
-      filter: 'blur(0px)',
-      duration: 2.4,
+      duration: 1.6,
       ease: 'power4.out'
-    }
-  );
+    });
+
+  // 2. Matching canvas container zoom-in then zoom-out
+  const canvasTl = gsap.timeline();
+  canvasTl
+    .fromTo('#hero-canvas-container',
+      { scale: 0.88, filter: 'blur(6px)' },
+      { scale: 1.48, filter: 'blur(2px)', duration: 0.75, ease: 'power2.inOut' }
+    )
+    .to('#hero-canvas-container', {
+      scale: 1.0,
+      filter: 'blur(0px)',
+      duration: 1.6,
+      ease: 'power4.out'
+    });
 }
 
 // ===================================================================
@@ -717,3 +729,46 @@ function setupThemeAndAudio() {
     });
   }
 }
+
+// ===================================================================
+// ACTIVE PAGE FLOATING SYSTEM ("Jis Jis Page Par User Jaye Voh Float Kare")
+// Automatically detects active page/section and applies dynamic 3D levitation
+// ===================================================================
+function setupActivePageFloatingObserver() {
+  const sections = document.querySelectorAll('section[id]');
+  if (!sections.length) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-5% 0px -5% 0px',
+    threshold: 0.2
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const container = entry.target.querySelector('.container') || entry.target;
+      if (entry.isIntersecting) {
+        container.classList.add('page-floating-active');
+      } else {
+        container.classList.remove('page-floating-active');
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((sec) => observer.observe(sec));
+
+  // Also bind to nav links for instant response
+  document.querySelectorAll('.nav-link, .mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const sec = document.querySelector(href);
+        if (sec) {
+          const container = sec.querySelector('.container') || sec;
+          container.classList.add('page-floating-active');
+        }
+      }
+    });
+  });
+}
+

@@ -29,9 +29,9 @@ export function initHeroCanvas() {
   // Scene setup
   scene = new THREE.Scene();
 
-  // Camera setup - starts zoomed in close for dramatic pullback reveal
+  // Camera setup - starts at 6.8, zooms in deep to 1.9, then zooms out to 6.2
   camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-  camera.position.z = 2.2;
+  camera.position.z = 6.8;
 
   // WebGL Renderer
   renderer = new THREE.WebGLRenderer({
@@ -268,26 +268,31 @@ export function setParallaxGain(gain) {
   parallaxGain = parseFloat(gain) || 1.0;
 }
 
-// Cinematic 3D Camera Pullback Transition (Zoom-out from deep close space)
-export function triggerCameraPullback() {
+// Cinematic 3D Camera: Zoom-In (inward pull towards viewer) then Zoom-Out together
+export function triggerZoomInThenZoomOut() {
   if (!camera) return;
-  camera.position.z = 2.0;
-  const startTime = performance.now();
-  const duration = 2400; // 2.4s cinematic dolly pullback
-  const startZ = 2.0;
-  const targetZ = 6.2;
+  camera.position.z = 6.8;
+  const phase1Duration = 750;  // 750ms rapid inward zoom-in
+  const phase2Duration = 1600; // 1600ms smooth outward zoom-out
+  const t0 = performance.now();
 
-  function stepPullback(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    // Exponential out ease for dramatic snap and deceleration
-    const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-    camera.position.z = startZ + (targetZ - startZ) * ease;
-    if (progress < 1) {
-      requestAnimationFrame(stepPullback);
+  function animateCamera(now) {
+    const elapsed = now - t0;
+    if (elapsed < phase1Duration) {
+      // Phase 1: Zoom IN towards the core / viewer
+      const p1 = elapsed / phase1Duration;
+      const ease1 = -(Math.cos(Math.PI * p1) - 1) / 2; // In-out sine
+      camera.position.z = 6.8 - (6.8 - 1.9) * ease1;
+      requestAnimationFrame(animateCamera);
+    } else if (elapsed < phase1Duration + phase2Duration) {
+      // Phase 2: Zoom OUT together to standard 6.2
+      const p2 = (elapsed - phase1Duration) / phase2Duration;
+      const ease2 = p2 === 1 ? 1 : 1 - Math.pow(2, -10 * p2); // Expo out
+      camera.position.z = 1.9 + (6.2 - 1.9) * ease2;
+      requestAnimationFrame(animateCamera);
     } else {
-      camera.position.z = targetZ;
+      camera.position.z = 6.2;
     }
   }
-  requestAnimationFrame(stepPullback);
+  requestAnimationFrame(animateCamera);
 }
